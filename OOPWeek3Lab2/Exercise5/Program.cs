@@ -4,27 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercise4
+namespace Exercise5
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // Deferred Execution
-
             int[] numbers = { 1, 5, 3, 6, 10, 12, 8 };
 
-            //var query = number in numbers
-            //            select DoubleIt(numbers)
+            var query1 = from number in numbers
+                         orderby number descending
+                         select number;
 
-            var query = numbers.Select(n => DoubleIt(n));
+            var query2 = from number in query1
+                         where number < 8
+                         select number;
 
-            Console.WriteLine("Before the foreach Loop");
+            var query3 = from number in query2
+                         select DoubleIt(number);
 
-            foreach (var item in query)
+            foreach (var item in query3)
             {
                 Console.WriteLine(item);
             }
+
             Console.ReadLine();
         }
 
