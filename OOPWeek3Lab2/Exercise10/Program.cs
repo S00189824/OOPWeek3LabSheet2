@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercise9
+namespace Exercise10
 {
     class Program
     {
         static void Main(string[] args)
         {
             GetCustomers();
+            Console.ReadLine();
         }
+
         private static List<Customer> GetCustomers()
         {
             Customer c1 = new Customer { Name = "Tom", City = "Dublin" };
@@ -29,20 +31,20 @@ namespace Exercise9
             customers.Add(c5);
 
             var query1 = from c in customers
-                         where c.City == "Dublin"
+                         where c.City == "Dublin" || c.City == "Galway"
+                         orderby c.Name
                          select c;
 
             foreach (var item in query1)
             {
-                Console.WriteLine(item.City);
+                Console.WriteLine(item.Name + " " + item.City);
             }
-            
-            return customers;
-            
-        }
-        
-    }
 
+            return customers;
+
+        }
+
+    }
     public class Customer
     {
         public string Name { get; set; }
